@@ -1,0 +1,61 @@
+Developing Data Products Course Project: Iris Data Exploration
+========================================================
+author:PK 
+date: 9/17/2016
+autosize: true
+
+Introduction
+========================================================
+
+
+- The Iris Data Exploration app was developed in Shiny Package, which can be used to build interactive web applications with R. 
+- This app allows the user to learn the general statics of the Iris Data set.
+
+- Users can explore the data by selecting a data variable as well as no. observations.
+
+- The App consists of 2 plots Tabs, 1 summary Tab, 1 Covariance Tab and 1 Correlation Tab. When a user a selects a data variable and no.of observations, results and plots can be found in each tab. 
+
+- The app can be found at https://fargofarmer.shinyapps.io/exploring-iris-data/
+
+Code
+========================================================
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=TRUE}
+
+library(knitr)  
+opts_chunk$set(echo = TRUE)  
+library(dplyr)  
+library(ggplot2)
+library(datasets)
+data("iris")
+##Sample Alogrithm
+table(summary(iris))
+```
+*****
+-The algorithm written for Shiny application simply calculates mean and other parameters of each iris data variable. Variance in the summary can be observed with change in No. of Observations.   
+
+Slide With Plot
+========================================================
+
+```{r echo=FALSE}
+#Histogram
+hist(iris$Sepal.Length)
+#Boxplot
+boxplot(iris$Sepal.Length~iris$Species)
+```
+****
+Histogram Plot Shows varince in normal distribution with respct to no. observations. As No. of observations or sample size increases, a better bell curve can be achieved. Except the Petal.Width, the rest of variables typically normally distributed. 
+
+Correlation
+========================================================
+```{r echo=FALSE}
+#Histogram
+cov(iris$Sepal.Length, iris[, 1:4])
+#Boxplot
+cor(iris$Sepal.Length, iris[, 1:4])
+```
+****
+In the last step, the application verifies the correlation and covariance among variables. We observed coorelation and covarience are stronger among Sepal.Length, Petal.Length and Petal.Width.
